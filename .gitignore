@@ -1,0 +1,33 @@
+# Ignore specific files
+secret-config.txt
+api-keys.json
+notes.txt
+
+# Ignore all .log files anywhere in the project
+*.log
+
+# Ignore specific folders (and everything inside them)
+__pycache__/
+node_modules/
+venv/
+env/
+.cache/
+data/temp/
+output/
+
+# Ignore all CSV files (if you don't want any CSVs)
+# *.csv
+
+# Or ignore only large CSVs (e.g., in a specific folder)
+# large-data/*.csv
+# project/data/*.csv
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.swp
+*~
