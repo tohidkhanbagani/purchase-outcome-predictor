@@ -8,6 +8,8 @@ This repository contains a machine learning project that predicts customer purch
 - [Business Impact](#business-impact)
 - [Technical Impact](#technical-impact)
 - [Architecture](#architecture)
+- [Folder Structure](#folder-structure)
+- [Pipeline Diagram](#pipeline-diagram)
 - [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
 
@@ -52,6 +54,66 @@ The project is organized into the following directories:
     *   `models/`: The purchase outcome prediction model.
     *   `pipelines/`: The training and inference pipelines.
     *   `utils/`: Utility functions used throughout the project.
+
+## Folder Structure
+```
+purchase prediction/
+├── api/
+│   ├── input_classes.py
+│   └── main.py
+├── data/
+│   ├── processed/
+│   └── raw/
+├── frontend/
+│   └── predictive_outcome_simulator.html
+├── models/
+│   ├── data_processing_models/
+│   ├── grid_search_models/
+│   └── trained_models/
+├── notebook/
+│   ├── data_exploration.ipynb
+│   └── predictive_model.ipynb
+├── src/
+│   ├── data_ingestion/
+│   ├── features/
+│   ├── models/
+│   ├── pipelines/
+│   └── utils/
+├── .gitattributes
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
+
+## Pipeline Diagram
+```
++-----------------+      +----------------------+      +--------------------+
+|                 |      |                      |      |                    |
+|   Raw Data      +----->+  Data Ingestion      +----->+  Feature           |
+|   (.csv)        |      |   (Ingest Class)     |      |  Engineering       |
+|                 |      |                      |      | (InputModelFeatures|
++-----------------+      +----------------------+      |     Class)         |
+                                                       |                    |
+                                                       +----------+---------+
+                                                                  |
+                                                                  |
+                                                                  v
++-----------------+      +----------------------+      +----------+---------+
+|                 |      |                      |      |                    |
+|   User Input    +----->+  FastAPI Backend     +----->+  Model Inference   |
+| (JSON)          |      |   (main.py)          |      | (ModelInference    |
+|                 |      |                      |      |     Class)         |
++-----------------+      +----------------------+      +----------+---------+
+                                                                  |
+                                                                  |
+                                                                  v
++-----------------+      +----------------------+      +----------+---------+
+|                 |      |                      |      |                    |
+|   Prediction    <-----+  Purchase Outcome    <-----+  Encoded & Scaled   |
+|  (JSON)         |      |   Model              |      |   Data             |
+|                 |      | (XGBClassifier)      |      |                    |
++-----------------+      +----------------------+      +--------------------+
+```
 
 ## Getting Started
 
